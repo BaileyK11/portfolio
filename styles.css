@@ -156,8 +156,21 @@ nav .right a span {
 
 /* SECTION 3: Testimony */
 .testimony-section {
-  padding: 0 50px;
+  padding-top: 100px 50px 0;
   margin-bottom: 100px;
+}
+
+.testimony-section .header-space {
+  height: 1px; /* Adjust the height for desktop */
+  background-color: #f0f0f0;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 740px) {
+  .testimony-section .header-space {
+    height: 100px; /* Adjust the height for mobile */
+    background-color: #f0f0f0;
+  }
 }
 
 .testimony-section h2 {
@@ -197,6 +210,19 @@ nav .right a span {
 
 .testimony-section .group .text {
   flex: 8;
+}
+
+.testimony-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+}
+
+@media (max-width: 768px) {
+  .testimony-header h2 {
+    margin-bottom: 10px;
+  }
 }
 
 /* SECTION 4: Contact */
@@ -251,6 +277,10 @@ nav .right a span {
   filter: brightness(0.9);
 }
 
+.contact-heading {
+  padding-top: 100px; /* Adjust this value as needed */
+}
+
 @media (max-width: 850px) {
   /* SECTION 1: Hero */
   .hero-section .text h2 {
@@ -271,10 +301,16 @@ nav .right a span {
   /* SECTION 3: Testimony */
   .testimony-section {
     text-align: center;
+    padding: 0 20px;
   }
 
   .testimony-section .group {
     flex-direction: column;
+    align-items: center;
+  }
+
+  .testimony-section .group .text {
+    margin-top: 20px;
   }
 
   /* SECTION 4: Contact */
