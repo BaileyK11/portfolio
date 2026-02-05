@@ -166,7 +166,7 @@ nav .right a span {
 }
 
 /* Mobile-specific styles */
-@media (max-width: 740px) {
+@media (max-width: 393px) {
   .testimony-section .header-space {
     height: 100px; /* Adjust the height for mobile */
     background-color: #f0f0f0;
