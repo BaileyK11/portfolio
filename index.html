@@ -11,6 +11,12 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
 
     <link
       rel="stylesheet"
@@ -28,9 +34,15 @@
     <!-- NAVBAR -->
     <nav>
       <div class="left">
-        <a href="/">BAILEY KORNEGAY-DOUHADJI</a>
+        <a href="#" data-page="hero" class="nav-link"
+          >BAILEY KORNEGAY-DOUHADJI</a
+        >
       </div>
       <div class="right">
+        <a href="#" data-page="hero" class="nav-link">Home</a>
+        <a href="#" data-page="skills" class="nav-link">Skills</a>
+        <a href="#" data-page="testimony" class="nav-link">Journey</a>
+        <a href="#" data-page="contact" class="nav-link">Contact</a>
         <a
           href="https://github.com/BaileyK11"
           target="_blank"
@@ -55,8 +67,8 @@
     </nav>
 
     <main>
-      <!-- SECTION 1: Hero -->
-      <section class="hero-section">
+      <!-- PAGE 1: Hero -->
+      <section class="page hero-section active" data-page="hero">
         <div class="text">
           <h2>Hi, I'm Bailey!</h2>
           <p>
@@ -66,15 +78,15 @@
             opportunities that come my way!
           </p>
           <div class="links">
-            <a href="#skills">
+            <a href="#" data-page="skills" class="nav-link">
               <i class="fa-solid fa-code"></i>
               <span>Skills</span>
             </a>
-            <a href="#testimony">
+            <a href="#" data-page="testimony" class="nav-link">
               <i class="fa-solid fa-pen"></i>
               <span>My Journey</span>
             </a>
-            <a href="#contact">
+            <a href="#" data-page="contact" class="nav-link">
               <i class="fa-solid fa-envelope"></i>
               <span>Contact</span>
             </a>
@@ -85,8 +97,8 @@
         </div>
       </section>
 
-      <!-- SECTION 2: Skills -->
-      <section id="skills" class="skills-section">
+      <!-- PAGE 2: Skills -->
+      <section class="page skills-section" data-page="skills">
         <h2>Skills</h2>
         <div class="text">
           I've worked on a variety of projects, from web development (like this
@@ -113,8 +125,8 @@
         </div>
       </section>
 
-      <!-- SECTION 3: Testimony -->
-      <section id="testimony" class="testimony-section">
+      <!-- PAGE 3: Testimony -->
+      <section class="page testimony-section" data-page="testimony">
         <h2>My Journey</h2>
         <div class="header-space"></div>
         <div class="group">
@@ -134,8 +146,8 @@
         </div>
       </section>
 
-      <!-- SECTION 4: Contact -->
-      <section id="contact" class="contact-section">
+      <!-- PAGE 4: Contact -->
+      <section class="page contact-section" data-page="contact">
         <h2 class="contact-heading">Contact</h2>
         <div class="group">
           <div class="text">
@@ -160,5 +172,7 @@
         </div>
       </section>
     </main>
+
+    <script src="script.js"></script>
   </body>
 </html>

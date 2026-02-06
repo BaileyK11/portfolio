@@ -32,9 +32,13 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   padding: 0 50px;
   height: 80px;
+  position: sticky;
+  top: 0;
+  background-color: var(--background-color);
+  z-index: 100;
+  border-bottom: 1px solid #d3d3d3;
 }
 
 nav .left a {
@@ -43,30 +47,104 @@ nav .left a {
   font-weight: 600;
 }
 
-nav .right a {
-  color: var(--text-color);
-  margin: 0 10px;
+nav .right {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-nav .right a:last-child {
-  color: var(--background-color);
-  background-color: var(--text-color);
-  padding: 5px 15px;
+nav .right a {
+  color: var(--text-color);
+  padding: 8px 12px;
   border-radius: 5px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-size: 14px;
+}
+
+nav .right a:hover {
+  background-color: rgba(74, 118, 238, 0.1);
+  color: var(--link-color);
 }
 
 nav .right a span {
   margin-left: 5px;
 }
 
+/* Active nav link indicator */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link.active-link {
+  color: var(--link-color) !important;
+}
+
+.nav-link.active-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--link-color);
+  animation: slideIn 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Page transition styles */
+.page {
+  display: none;
+  opacity: 0;
+  min-height: calc(100vh - 80px);
+  padding: 50px;
+}
+
+.page.active {
+  display: flex;
+  opacity: 1;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.page.fade-out {
+  display: flex;
+  animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+}
+
 /* SECTION 1: Hero */
 .hero-section {
-  display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 50px;
-  margin: 50px 0;
-  margin-bottom: 100px;
   gap: 40px;
 }
 
@@ -78,23 +156,33 @@ nav .right a span {
   font-size: 45px;
 }
 
+.hero-section .text p {
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
 .hero-section .text .links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-top: 25px;
 }
 
 .hero-section .text .links a {
-  display: inline-block;
-  padding: 5px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
   border: 2px solid var(--link-color);
   border-radius: 5px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  transition: 0.1s;
+  transition: all 0.2s ease;
+  font-size: 14px;
 }
 
 .hero-section .text .links a:hover {
-  color: var(--text-color);
-  border: 2px solid var(--text-color);
+  color: #fff;
+  background-color: var(--link-color);
+  border-color: var(--link-color);
 }
 
 .hero-section .headshot {
@@ -110,18 +198,21 @@ nav .right a span {
 
 /* SECTION 2: Skills */
 .skills-section {
-  padding: 0 50px;
-  margin-bottom: 100px;
+  flex-direction: column;
+  align-items: center;
 }
 
 .skills-section h2 {
   text-align: center;
   font-size: 35px;
+  margin-bottom: 10px;
 }
 
 .skills-section .text {
   text-align: center;
   margin-bottom: 20px;
+  max-width: 600px;
+  line-height: 1.6;
 }
 
 .skills-section .cells {
@@ -135,12 +226,16 @@ nav .right a span {
   justify-content: center;
   align-items: center;
   gap: 10px;
-
   width: 200px;
   padding: 10px 20px;
   margin: 10px;
   border: 1.5px solid #d3d3d3;
   border-radius: 5px;
+  transition: border-color 0.2s ease;
+}
+
+.skills-section .cells .cell:hover {
+  border-color: var(--link-color);
 }
 
 .skills-section .cells .cell img {
@@ -156,34 +251,22 @@ nav .right a span {
 
 /* SECTION 3: Testimony */
 .testimony-section {
-  padding-top: 100px 50px 0;
-  margin-bottom: 100px;
+  flex-direction: column;
 }
 
 .testimony-section .header-space {
-  height: 1px; /* Adjust the height for desktop */
-  background-color: #f0f0f0;
-}
-
-/* Mobile-specific styles */
-@media (max-width: 393px) {
-  .testimony-section .header-space {
-    height: 100px; /* Adjust the height for mobile */
-    background-color: #f0f0f0;
-  }
+  height: 1px;
 }
 
 .testimony-section h2 {
   font-size: 35px;
   margin-bottom: 30px;
-  margin-left: 50px;
 }
 
 .testimony-section .group {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300px;
   gap: 50px;
 }
 
@@ -211,29 +294,18 @@ nav .right a span {
 
 .testimony-section .group .text {
   flex: 8;
-}
-
-.testimony-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 100px;
-}
-
-@media (max-width: 768px) {
-  .testimony-header h2 {
-    margin-bottom: 10px;
-  }
+  line-height: 1.6;
+  font-style: italic;
 }
 
 /* SECTION 4: Contact */
 .contact-section {
-  padding: 0 50px;
-  margin-bottom: 100px;
+  flex-direction: column;
 }
 
 .contact-section h2 {
   font-size: 35px;
+  margin-bottom: 20px;
 }
 
 .contact-section .group {
@@ -244,6 +316,7 @@ nav .right a span {
 .contact-section .group .text {
   flex: 3;
   margin-top: 20px;
+  line-height: 1.6;
 }
 
 .contact-section .group form {
@@ -261,6 +334,13 @@ nav .right a span {
   margin-bottom: 15px;
   outline: none;
   resize: none;
+  border-radius: 5px;
+  transition: border-color 0.2s ease;
+}
+
+.contact-section .group form input:focus,
+.contact-section .group form textarea:focus {
+  border-color: var(--text-color);
 }
 
 .contact-section .group form button {
@@ -271,120 +351,126 @@ nav .right a span {
   border: none;
   height: 50px;
   cursor: pointer;
-  transition: 0.1s;
+  transition: all 0.2s ease;
+  border-radius: 5px;
 }
 
 .contact-section .group form button:hover {
   filter: brightness(0.9);
+  transform: translateY(-1px);
 }
 
-.contact-heading {
-  padding-top: 100px; /* Adjust this value as needed */
-}
-
+/* MEDIA QUERIES */
 @media (max-width: 850px) {
-  /* SECTION 1: Hero */
   .hero-section .text h2 {
     font-size: 35px;
   }
 }
 
 @media (max-width: 740px) {
-  /* SECTION 1: Hero */
+  .page {
+    padding: 30px 20px;
+  }
+
   .hero-section {
     flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .hero-section .headshot {
+    justify-content: center;
   }
 
   .hero-section .headshot img {
-    width: 300px;
+    width: 250px;
   }
 
-  /* SECTION 3: Testimony */
-  .testimony-section {
-    text-align: center;
-    padding: 0 20px; /* Remove top padding here */
+  .hero-section .text .links {
+    justify-content: center;
   }
 
   .testimony-section h2 {
     text-align: center;
-    margin-left: 0;
-    margin-top: 0px; /* Only this moves the heading */
-    transform: translateY(-60px);
-    padding-top: 0px; /* Add padding to heading instead */
-  }
-
-  .header-space {
-    margin-top: -15px;
   }
 
   .testimony-section .group {
     flex-direction: column;
-    align-items: center;
-    margin-top: -40px;
   }
 
   .testimony-section .group .text {
     margin-top: 20px;
   }
 
-  /* SECTION 4: Contact */
   .contact-section .group {
     flex-direction: column;
   }
 }
 
 @media (max-width: 600px) {
-  /* NAVBAR */
   nav {
     padding: 0 20px;
+    flex-wrap: wrap;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
-  nav .right a {
-    font-size: 22px;
+  nav .left a {
+    font-size: 16px;
   }
 
-  nav .right a:last-child {
-    color: var(--text-color);
-    background-color: transparent;
-    padding: 0;
+  nav .right {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px;
   }
 
-  nav .right a span {
-    display: none;
+  /* Page nav links (Home, Skills, Journey, Contact) */
+  nav .right .nav-link {
+    font-size: 13px;
+    padding: 6px 8px;
   }
 
-  /* SECTION 1: Hero */
-  .hero-section {
-    padding: 0 20px;
+  nav .right .nav-link span {
+    display: inline; /* Keep text visible for page links */
+  }
+
+  /* External links (Github, LinkedIn, Email) */
+  nav .right a:not(.nav-link) {
+    font-size: 20px;
+    padding: 8px 10px;
+    min-width: 40px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  nav .right a:not(.nav-link) span {
+    display: none; /* Hide text, show only icons */
+  }
+
+  .page {
+    padding: 20px 15px;
   }
 
   .hero-section .text h2 {
     font-size: 30px;
   }
 
-  /* SECTION 2: Skills */
-  .skills-section {
-    padding: 0 20px;
+  .hero-section .text .links a {
+    padding: 8px 15px;
+    font-size: 13px;
+    width: 100%;
+    justify-content: center;
   }
 
   .skills-section .cells .cell span {
     font-size: 16px;
   }
 
-  /* SECTION 3: Testimony */
-  .testimony-section {
-    padding: 0 20px; /* Remove top padding */
-  }
-
   .testimony-section h2 {
     text-align: center;
-    margin-left: 0;
-    margin-top: -10px;
-    padding-top: 10px; /* Add padding to heading instead */
-  }
-
-  /* SECTION 4: Contact */
-  .contact-section {
-    padding: 0 20px;
   }
 }
